@@ -289,15 +289,26 @@ class InvoicepdfOxOrder extends InvoicepdfOxOrder_parent
         }
         $oPdfBlock = oxNew('InvoicepdfBlock');
         $oPdf->setFont($oPdfBlock->getFont(), '', 10);
-        $oPdf->text(15, 59, $sSal);
-        $oPdf->text(15, 63, $this->oxorder__oxbillfname->getRawValue() . ' ' . $this->oxorder__oxbilllname->getRawValue());
-        $oPdf->text(15, 67, $this->oxorder__oxbillcompany->getRawValue());
-        $oPdf->text(15, 71, $this->oxorder__oxbillstreet->getRawValue() . ' ' . $this->oxorder__oxbillstreetnr->value);
+        
+        if ($this->oxorder__oxbillcompany->getRawValue()) {
+            $oPdf->text(15, 59, $this->oxorder__oxbillcompany->getRawValue());
+            $iTop = 63;
+        }
+        else {
+            $iTop = 59;
+            $oPdf->text(15, $iTop, $sSal);
+            $iTop += 4;
+        }
+        $oPdf->text(15, $iTop, $this->oxorder__oxbillfname->getRawValue() . ' ' . $this->oxorder__oxbilllname->getRawValue());
+        $iTop += 4;
+        $oPdf->text(15, $iTop, $this->oxorder__oxbillstreet->getRawValue() . ' ' . $this->oxorder__oxbillstreetnr->value);
         $oPdf->setFont($oPdfBlock->getFont(), 'B', 10);
-        $oPdf->text(15, 75, $this->oxorder__oxbillzip->value . ' ' . $this->oxorder__oxbillcity->getRawValue());
+        $iTop += 6;
+        $oPdf->text(15, $iTop, $this->oxorder__oxbillzip->value . ' ' . $this->oxorder__oxbillcity->getRawValue());
+        $iTop += 4;
         $oPdf->setFont($oPdfBlock->getFont(), '', 10);
-        $oPdf->text(15, 79, $this->oxorder__oxbillcountry->getRawValue());
-        $oPdf->text(15, 83, $this->oxorder__oxbillemail->getRawValue());
+        $oPdf->text(15, $iTop, $this->oxorder__oxbillcountry->getRawValue());
+        //$oPdf->text(15, 83, $this->oxorder__oxbillemail->getRawValue());
     }
 
     /**
@@ -447,11 +458,12 @@ class InvoicepdfOxOrder extends InvoicepdfOxOrder_parent
         }
 
         // shop city
-        $sText = $oShop->oxshops__oxcity->getRawValue() . ', ' . date('d.m.Y', strtotime($this->oxorder__oxbilldate->value));
+        //$sText = $oShop->oxshops__oxcity->getRawValue() . ', ' . date('d.m.Y', strtotime($this->oxorder__oxbilldate->value));
+        $sText = $this->translate('ORDER_OVERVIEW_PDF_DATE') . ': ' . date('d.m.Y', strtotime($this->oxorder__oxbilldate->value));
         $oPdf->setFont($oPdfBlock->getFont(), '', 10);
-        $oPdf->text(195 - $oPdf->getStringWidth($sText), $iTop + 8, $sText);
+        $oPdf->text(195 - $oPdf->getStringWidth($sText), $iTop + 6, $sText);
 
-        // shop VAT number
+        /* shop VAT number
         if ($oShop->oxshops__oxvatnumber->value) {
             $sText = $this->translate('ORDER_OVERVIEW_PDF_TAXIDNR') . ' ' . $oShop->oxshops__oxvatnumber->value;
             $oPdf->text(195 - $oPdf->getStringWidth($sText), $iTop + 12, $sText);
@@ -459,25 +471,33 @@ class InvoicepdfOxOrder extends InvoicepdfOxOrder_parent
         } else {
             $iTop += 4;
         }
-
-        // invoice number
-        $sText = $this->translate('ORDER_OVERVIEW_PDF_COUNTNR') . ' ' . $this->oxorder__oxbillnr->value;
-        $oPdf->text(195 - $oPdf->getStringWidth($sText), $iTop + 8, $sText);
+        */
+        $iTop += 6; //Remove this if you activate the shop VAT number above
+      
+        // order number
+        /*$sText = $this->translate('ORDER_OVERVIEW_PDF_PURCHASENR') . ' ' . $this->oxorder__oxbillnr->value;
+        $oPdf->text(195 - $oPdf->getStringWidth($sText), $iTop + 8, $sText);*/
 
         // marking if order is canceled
         if ($this->oxorder__oxstorno->value == 1) {
             $this->oxorder__oxordernr->setValue($this->oxorder__oxordernr->getRawValue() . '   ' . $this->translate('ORDER_OVERVIEW_PDF_STORNO'), oxField::T_RAW);
         }
 
-        // order number
-        $oPdf->setFont($oPdfBlock->getFont(), '', 12);
-        $oPdf->text(15, $iTop, $this->translate('ORDER_OVERVIEW_PDF_PURCHASENR') . ' ' . $this->oxorder__oxordernr->value);
-
+        // Header: invoice
+        $oPdf->setFont($oPdfBlock->getFont(), 'B', 14);
+        $oPdf->text(15, $iTop, $this->translate('ORDER_OVERVIEW_PDF_INVOICE'));
+        
+        
+        //invoice-number
+        $oPdf->setFont($oPdfBlock->getFont(), '', 10);
+        $oPdf->text(80, $iTop, $this->translate('ORDER_OVERVIEW_PDF_NO') . ' ' . $this->oxorder__oxordernr->value);
+        
         // order date
         $oPdf->setFont($oPdfBlock->getFont(), '', 10);
+        $iTop += 9;
         $aOrderDate = explode(' ', $this->oxorder__oxorderdate->value);
         $sOrderDate = \OxidEsales\Eshop\Core\Registry::get("oxUtilsDate")->formatDBDate($aOrderDate[0]);
-        $oPdf->text(15, $iTop + 8, $this->translate('ORDER_OVERVIEW_PDF_ORDERSFROM') . $sOrderDate . $this->translate('ORDER_OVERVIEW_PDF_ORDERSAT') . $oShop->oxshops__oxurl->value);
+        $oPdf->text(15, $iTop, $this->translate('ORDER_OVERVIEW_PDF_PURCHASENR') . $this->oxorder__oxbillnr->value . ' ' . $this->translate('ORDER_OVERVIEW_PDF_FROM') . $sOrderDate);
         $iTop += 16;
 
         // product info header

@@ -67,7 +67,7 @@ $aLang = array(
     'ORDER_OVERVIEW_PDF_TAXIDNR'               => 'USt.-ID-Nr.:',
     'ORDER_OVERVIEW_PDF_COUNTNR'               => 'Rechn-Nr.:',
     'ORDER_OVERVIEW_PDF_STORNO'                => 'STORNO',
-    'ORDER_OVERVIEW_PDF_PURCHASENR'            => 'Bestellnr.',
+    'ORDER_OVERVIEW_PDF_PURCHASENR'            => 'Bestellung Nr.',
     'ORDER_OVERVIEW_PDF_ORDERSFROM'            => 'Ihre Bestellung vom ',
     'ORDER_OVERVIEW_PDF_ORDERSAT'              => ' bei ',
     'ORDER_OVERVIEW_PDF_VAT'                   => 'USt. %',
@@ -76,4 +76,8 @@ $aLang = array(
     'ORDER_OVERVIEW_PDF_STANDART_WITHOUT_LOGO' => 'Rechnung ohne Logos',
     'ORDER_OVERVIEW_PDF_DNOTE_WITHOUT_LOGO'    => 'Lieferschein ohne Logos',
     'ORDER_OVERVIEW_PDF_ADDINFO'               => 'Bestellbemerkung (Zus Info):',
+    'ORDER_OVERVIEW_PDF_INVOICE'               => 'RECHNUNG',
+    'ORDER_OVERVIEW_PDF_NO'                    => 'Nr.',
+    'ORDER_OVERVIEW_PDF_DATE'                  => 'Datum',
+    'ORDER_OVERVIEW_PDF_FROM'                  => 'vom ',
 );

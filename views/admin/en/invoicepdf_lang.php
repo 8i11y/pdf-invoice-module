@@ -67,7 +67,7 @@ $aLang = array(
     'ORDER_OVERVIEW_PDF_TAXIDNR'               => 'Sales tax id:',
     'ORDER_OVERVIEW_PDF_COUNTNR'               => 'Invoice No:',
     'ORDER_OVERVIEW_PDF_STORNO'                => 'CANCELLATION',
-    'ORDER_OVERVIEW_PDF_PURCHASENR'            => 'Order No.',
+    'ORDER_OVERVIEW_PDF_PURCHASENR'            => 'Order No. ',
     'ORDER_OVERVIEW_PDF_ORDERSFROM'            => 'Your Order ',
     'ORDER_OVERVIEW_PDF_ORDERSAT'              => ' in ',
     'ORDER_OVERVIEW_PDF_VAT'                   => 'Tax %',
@@ -76,4 +76,8 @@ $aLang = array(
     'ORDER_OVERVIEW_PDF_STANDART_WITHOUT_LOGO' => 'Invoice without logos',
     'ORDER_OVERVIEW_PDF_DNOTE_WITHOUT_LOGO'    => 'Deliv. note without logos',
     'ORDER_OVERVIEW_PDF_ADDINFO'               => 'Order note (Zus Info)',
+    'ORDER_OVERVIEW_PDF_INVOICE'               => 'INVOICE',
+    'ORDER_OVERVIEW_PDF_NO'                    => 'No.',
+    'ORDER_OVERVIEW_PDF_DATE'                  => 'Date',
+    'ORDER_OVERVIEW_PDF_FROM'                  => '',
 );
