@@ -80,4 +80,5 @@ $aLang = array(
     'ORDER_OVERVIEW_PDF_NO'                    => 'No.',
     'ORDER_OVERVIEW_PDF_DATE'                  => 'Date',
     'ORDER_OVERVIEW_PDF_FROM'                  => '',
+    'ORDER_OVERVIEW_PDF_DELIVERYNOTE'          => 'DELIVERY NOTE',
 );

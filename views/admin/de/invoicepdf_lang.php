@@ -72,7 +72,7 @@ $aLang = array(
     'ORDER_OVERVIEW_PDF_ORDERSAT'              => ' bei ',
     'ORDER_OVERVIEW_PDF_VAT'                   => 'USt. %',
     'ORDER_OVERVIEW_PDF_GREETINGS'             => 'Herzlichen Dank für Ihre Bestellung! Bitte empfehlen Sie uns weiter.',
-    'ORDER_OVERVIEW_PDF_DELIVNOTE'             => 'Lieferschein Nr.',
+    'ORDER_OVERVIEW_PDF_DELIVNOTE'           => 'Lieferschein Nr.',
     'ORDER_OVERVIEW_PDF_STANDART_WITHOUT_LOGO' => 'Rechnung ohne Logos',
     'ORDER_OVERVIEW_PDF_DNOTE_WITHOUT_LOGO'    => 'Lieferschein ohne Logos',
     'ORDER_OVERVIEW_PDF_ADDINFO'               => 'Bestellbemerkung (Zus Info):',
@@ -80,4 +80,5 @@ $aLang = array(
     'ORDER_OVERVIEW_PDF_NO'                    => 'Nr.',
     'ORDER_OVERVIEW_PDF_DATE'                  => 'Datum',
     'ORDER_OVERVIEW_PDF_FROM'                  => 'vom ',
+    'ORDER_OVERVIEW_PDF_DELIVERYNOTE'          => 'LIEFERSCHEIN',
 );
