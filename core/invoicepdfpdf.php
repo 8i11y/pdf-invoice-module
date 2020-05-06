@@ -373,7 +373,7 @@ class InvoicepdfPDF extends \TCPDF
     {
         if ($family == 'Arial') {
             // overriding standard ..
-            $family = \OxidEsales\Eshop\Core\Registry::getConfig()->isUtf() ? 'freesans' : '';
+            $family = \OxidEsales\Eshop\Core\Registry::getConfig()->isUtf() ? 'arial' : '';
         }
 
         parent::SetFont($family, $style, $size, $fontfile);
