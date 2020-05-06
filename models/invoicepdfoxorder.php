@@ -199,7 +199,7 @@ class InvoicepdfOxOrder extends InvoicepdfOxOrder_parent
         $oShop = $this->_getActShop();
 
         $myConfig = $this->getConfig();
-        $pdfLogoPath = $this->getConfig()->getImagePath('pdf_logo.jpg');
+        $pdfLogoPath = $this->getConfig()->getImagePath('billmaier_logo_pdf.png');
 
         //check if pdf logo exists
         if (file_exists($pdfLogoPath)) {
@@ -209,7 +209,7 @@ class InvoicepdfOxOrder extends InvoicepdfOxOrder_parent
             if ($myConfig->getRequestParameter('pdftype') === 'standart' or $myConfig->getRequestParameter('pdftype') === 'dnote') {
                 $iMargin = 195 - $aSize[0] * 0.2;
                 $oPdf->setLink($oShop->oxshops__oxurl->value);
-                $oPdf->image($pdfLogoPath, $iMargin, 10, $aSize[0] * 0.2, $aSize[1] * 0.2, '', $oShop->oxshops__oxurl->value);
+                $oPdf->image($pdfLogoPath, $iMargin, 10, $aSize[0] * 0.048, $aSize[1] * 0.048, '', $oShop->oxshops__oxurl->value);
             }
             return 14 + $aSize[1] * 0.2;
         } else {
@@ -425,9 +425,11 @@ class InvoicepdfOxOrder extends InvoicepdfOxOrder_parent
         $oShop = $this->_getActShop();
 
         // shop information
-        $oPdf->setFont($oPdfBlock->getFont(), '', 6);
-        $oPdf->text(15, 55, $oShop->oxshops__oxname->getRawValue() . ' - ' . $oShop->oxshops__oxstreet->getRawValue() . ' - ' . $oShop->oxshops__oxzip->value . ' - ' . $oShop->oxshops__oxcity->getRawValue());
-
+        $oPdf->setFont($oPdfBlock->getFont(), 'BI', 8);
+        $oPdf->setTextColor(0, 0, 80);
+        $oPdf->text(21, 52, $oShop->oxshops__oxcompany->getRawValue() . ' - ' . $oShop->oxshops__oxstreet->getRawValue() . ' - ' . $oShop->oxshops__oxzip->value . ' ' . $oShop->oxshops__oxcity->getRawValue());
+        $oPdf->setTextColor(0, 0, 0);
+        
         // billing address
         $this->_setBillingAddressToPdf($oPdf);
 
